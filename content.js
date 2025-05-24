@@ -66,3 +66,29 @@ async function fillCourtForm(code) {
     alert("Error al llenar formulario: " + e.message);
   }
 }
+
+// Insertar badge de patrocinador Wabog
+(function injectSponsorBadge() {
+  const link = document.createElement('a');
+  link.href = "https://wabog.com";
+  link.target = "_blank";
+  link.style.position = "fixed";
+  link.style.bottom = "10px";
+  link.style.right = "10px";
+  link.style.zIndex = "10000";
+  link.style.width = "30px";
+  link.style.height = "30px";
+  link.style.opacity = "0.7";
+  link.style.transition = "opacity 0.2s";
+  link.addEventListener("mouseenter", () => link.style.opacity = "1");
+  link.addEventListener("mouseleave", () => link.style.opacity = "0.7");
+
+  const img = document.createElement('img');
+  img.src = chrome.runtime.getURL("assets/wabog_name_logo_light.webp");
+  img.style.width = "100%";
+  img.style.height = "100%";
+  img.alt = "Wabog";
+  
+  link.appendChild(img);
+  document.body.appendChild(link);
+})();
