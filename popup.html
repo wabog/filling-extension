@@ -1,73 +1,155 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Court Form Filler</title>
-  <style>
-    :root {
-      --primary: #1454fa;
-      --secondary: #34abdb;
-    }
-    body {
-      width: 300px;
-      padding: 10px;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f5f7fa;
-      color: #333;
-    }
-    h2 {
-      margin-top: 0;
-      color: var(--primary);
-      text-align: center;
-    }
-    input[type="text"] {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
-      box-sizing: border-box;
-      border: 1px solid var(--primary);
-      border-radius: 4px;
-      transition: border-color 0.3s;
-    }
-    input[type="text"]:focus {
-      outline: none;
-      border-color: var(--secondary);
-    }
-    button {
-      width: 100%;
-      padding: 12px;
-      background-color: var(--primary);
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: background-color 0.3s;
-    }
-    button:hover {
-      background-color: var(--secondary);
-    }
-    button:active {
-      transform: translateY(1px);
-    }
-    #error {
-      color: red;
-      margin-top: 10px;
-      display: none;
-      text-align: center;
-    }
-  </style>
-</head>
-<body>
-  <h2>Court Form Filler</h2>
-  <input type="text" id="courtCode" placeholder="Enter 23-digit code" maxlength="23">
-  <button id="submit" type="button">Fill Form</button>
-  <div id="error"></div>
-  <div id="sponsor">
-    <a href="https://wabog.com" target="_blank">
-      <img src="assets/wabog_name_logo_light.webp" alt="Wabog" style="width: 50px; height: auto;">
-    </a>
-  </div>
-  <script src="utils.js"></script>
-  <script src="popup.js"></script>
-</body>
+  <head>
+    <title>Court Form Filler</title>
+    <style>
+     :root {
+       --primary: #1e3a8a;
+       --secondary: #3b82f6;
+       --gradient-start: #ffffff;
+       --gradient-end: #f3f4f6;
+     }
+     body {
+       width: 320px;
+       padding: 15px;
+       font-family: 'Arial', sans-serif;
+       background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+       color: #1f2937;
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+     }
+     .card {
+       background: white;
+       border-radius: 12px;
+       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+       padding: 20px;
+       width: 100%;
+       box-sizing: border-box;
+       position: relative;
+     }
+     .title-container {
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       margin-bottom: 10px;
+     }
+     #logo {
+       display: block;
+       margin: 0 10px 0 0;
+       width: 80px;
+       height: auto;
+     }
+     .subheading {
+       text-align: center;
+       font-size: 14px;
+       color: #4b5563;
+       margin-bottom: 15px;
+     }
+     input[type="text"] {
+       width: 100%;
+       padding: 12px;
+       margin-bottom: 15px;
+       box-sizing: border-box;
+       border: 2px solid var(--primary);
+       border-radius: 8px;
+       font-size: 14px;
+       transition: border-color 0.3s, box-shadow 0.3s;
+     }
+     input[type="text"]:focus {
+       outline: none;
+       border-color: var(--secondary);
+       box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+     }
+     button {
+       width: 100%;
+       padding: 14px;
+       background: linear-gradient(90deg, var(--primary), var(--secondary));
+       color: white;
+       border: none;
+       border-radius: 8px;
+       cursor: pointer;
+       font-size: 16px;
+       font-weight: 500;
+       transition: transform 0.2s, opacity 0.2s;
+     }
+     button:hover {
+       opacity: 0.9;
+     }
+     button:active {
+       transform: scale(0.98);
+     }
+     #error {
+       color: #dc2626;
+       margin-top: 10px;
+       display: none;
+       text-align: center;
+       font-size: 14px;
+     }
+     a {
+       display: block;
+       text-align: center;
+       margin-top: 15px;
+       color: var(--primary);
+       text-decoration: none;
+       font-size: 14px;
+     }
+     a:hover {
+       text-decoration: underline;
+     }
+     .help-icon {
+       position: absolute;
+       top: 20px;
+       right: 20px;
+       width: 24px;
+       height: 24px;
+       border: 2px solid var(--primary);
+       color: var(--primary);
+       border-radius: 50%;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       font-size: 16px;
+       cursor: help;
+       background: transparent;
+     }
+     .help-icon:hover .tooltip {
+       visibility: visible;
+       opacity: 1;
+     }
+     .tooltip {
+       visibility: hidden;
+       opacity: 0;
+       position: absolute;
+       top: 40px;
+       right: 0;
+       background: #1f2937;
+       color: white;
+       padding: 8px;
+       border-radius: 6px;
+       font-size: 12px;
+       width: 200px;
+       text-align: center;
+       z-index: 1;
+       transition: opacity 0.2s;
+     }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="help-icon">?
+        <div class="tooltip">Esta extensión llena automáticamente formularios judiciales con el radicado ingresado.</div>
+      </div>
+      <div class="title-container">
+        <img id="logo" src="assets/wabog_name_logo_light.webp" alt="Wabog">
+      </div>
+      <div class="subheading">Automatiza formularios judiciales</div>
+      <input type="text" id="courtCode" placeholder="Ingresa el radicado" maxlength="23">
+      <button id="submit" type="button">Llenar</button>
+      <div id="error"></div>
+      <a href="https://procesojudicial.ramajudicial.gov.co/Justicia21/Administracion/Ciudadanos/frmConsulta.aspx?opcion=consulta" target="_blank">Ir a la página de la rama ⚖</a>
+    </div>
+    <script src="utils.js"></script>
+    <script src="popup.js"></script>
+  </body>
 </html>
