@@ -8,7 +8,7 @@ chrome.runtime.onMessage.addListener((request) => {
 // Convertir el código en campos individuales
 function convertCourtCode(code) {
   if (!/^\d{23}$/.test(code)) {
-    throw new Error("El código debe tener exactamente 23 dígitos numéricos");
+    throw new Error("El código debe tener exactamente 23 dígitos dígitos");
   }
   return {
     departamento: code.substring(0, 2),
@@ -33,7 +33,7 @@ function selectDropdown(selector, number) {
     dropdown.value = matchOption.value;
     dropdown.dispatchEvent(new Event('change', { bubbles: true }));
   } else {
-    throw new Error(`No se encontró opción para número ${number} en ${selector}`);
+    throw new Error(`No se encontró opción para número ${number} en ${selector}, revisa el radicado.`);
   }
 }
 
