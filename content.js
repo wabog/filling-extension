@@ -1,8 +1,9 @@
 // Escuchar mensajes desde popup.js
-chrome.runtime.onMessage.addListener((request) => {
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === "fillForm") {
     fillCourtForm(request.code);
   }
+  sendResponse({status: "completed"});
 });
 
 // Convertir el código en campos individuales
