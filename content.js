@@ -79,6 +79,8 @@ async function fillCourtForm(code) {
   link.style.width = "30px";
   link.style.height = "30px";
   link.style.opacity = "0.7";
+  link.style.backgroundColor = "white";
+  link.style.borderRadius = "50%";
   link.style.transition = "opacity 0.2s";
   link.addEventListener("mouseenter", () => link.style.opacity = "1");
   link.addEventListener("mouseleave", () => link.style.opacity = "0.7");
@@ -91,4 +93,32 @@ async function fillCourtForm(code) {
   
   link.appendChild(img);
   document.body.appendChild(link);
+})();
+
+// Insertar logo de la rama judicial
+(function injectRamaLogo() {
+  const ramaLink = document.createElement('a');
+  ramaLink.href = "https://www.ramajudicial.gov.co";
+  ramaLink.target = "_blank";
+  ramaLink.style.position = "fixed";
+  ramaLink.style.bottom = "50px";
+  ramaLink.style.right = "10px";
+  ramaLink.style.zIndex = "10000";
+  ramaLink.style.width = "30px";
+  ramaLink.style.height = "30px";
+  ramaLink.style.opacity = "0.7";
+  ramaLink.style.transition = "opacity 0.2s";
+  ramaLink.style.backgroundColor = "white";
+  ramaLink.style.borderRadius = "50%";
+  ramaLink.addEventListener("mouseenter", () => ramaLink.style.opacity = "1");
+  ramaLink.addEventListener("mouseleave", () => ramaLink.style.opacity = "0.7");
+
+  const ramaImg = document.createElement('img');
+  ramaImg.src = "URL_DEL_LOGO_DE_LA_RAMA"; // Reemplaza con la URL del logo de la rama
+  ramaImg.style.width = "100%";
+  ramaImg.style.height = "100%";
+  ramaImg.alt = "Rama Judicial";
+  
+  ramaLink.appendChild(ramaImg);
+  document.body.appendChild(ramaLink);
 })();
