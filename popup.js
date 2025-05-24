@@ -1,4 +1,5 @@
-document.getElementById("submit").addEventListener("click", () => {
+document.getElementById("submit").addEventListener("click", (e) => {
+  e.preventDefault();
   const code = document.getElementById("courtCode").value;
   
   chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {

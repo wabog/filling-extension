@@ -62,8 +62,6 @@ async function fillCourtForm(code) {
     codigoProceso.value = code;
     codigoProceso.dispatchEvent(new Event('input', { bubbles: true }));
 
-    alert("¡Formulario llenado exitosamente!");
-
   } catch (e) {
     alert("Error al llenar formulario: " + e.message);
   }
