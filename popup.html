@@ -9,6 +9,7 @@
       --secondary: #3b82f6;
       --gradient-start: #ffffff;
       --gradient-end: #f3f4f6;
+      --danger: #dc2626;
     }
     body {
       width: 320px;
@@ -33,12 +34,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
-        /* margin-bottom: 10px; */
     }
     #logo {
       display: block;
-        margin: 0 10px 0 0;
-        width: 140px;
+      margin: 0 10px 0 0;
+      width: 140px;
       height: auto;
     }
     .subheading {
@@ -87,7 +87,6 @@
       text-align: center;
       font-size: 14px;
     }
-
     a {
       display: block;
       text-align: center;
@@ -99,11 +98,9 @@
     a:hover {
       text-decoration: none;
     }
-
-a.title-container {
-    margin: 0;
-   }
-
+    a.title-container {
+      margin: 0;
+    }
     .help-icon {
       width: 24px;
       height: 24px;
@@ -132,11 +129,96 @@ a.title-container {
       color: white;
       padding: 8px;
       border-radius: 6px;
-      font-size: 20px;
+      font-size: 12px;
       width: 200px;
       text-align: center;
       z-index: 1;
       transition: opacity 0.2s;
+    }
+
+    /* Estilos del historial */
+    .history-section {
+      margin-top: 20px;
+      border-top: 1px solid #e5e7eb;
+      padding-top: 15px;
+    }
+    .history-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .history-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: #374151;
+    }
+    .clear-all-btn {
+      background: var(--danger);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 4px 8px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .clear-all-btn:hover {
+      opacity: 0.8;
+    }
+    .history-list {
+      max-height: 150px;
+      overflow-y: auto;
+    }
+    .history-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px;
+      margin-bottom: 5px;
+      background: #f9fafb;
+      border-radius: 6px;
+      border: 1px solid #e5e7eb;
+      transition: background-color 0.2s;
+    }
+    .history-item:hover {
+      background: #f3f4f6;
+    }
+    .history-code {
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      color: #374151;
+      cursor: pointer;
+      flex: 1;
+      text-align: left;
+    }
+    .history-code:hover {
+      color: var(--primary);
+    }
+    .delete-btn {
+      background: var(--danger);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.2s;
+      margin-left: 8px;
+    }
+    .delete-btn:hover {
+      opacity: 0.8;
+    }
+    .history-empty {
+      text-align: center;
+      color: #9ca3af;
+      font-size: 12px;
+      font-style: italic;
+      padding: 20px;
     }
   </style>
 </head>
@@ -153,6 +235,17 @@ a.title-container {
     <button id="submit" type="button">Llenar</button>
     <div id="error"></div>
     <a href="https://procesojudicial.ramajudicial.gov.co/Justicia21/Administracion/Ciudadanos/frmConsulta.aspx?opcion=consulta" target="_blank">Ir a la página de la rama ⚖</a>
+
+    <!-- Sección del historial -->
+    <div class="history-section">
+      <div class="history-header">
+        <span class="history-title">Historial</span>
+        <button id="clearAll" class="clear-all-btn" style="display: none;">Limpiar todo</button>
+      </div>
+      <div id="historyList" class="history-list">
+        <div class="history-empty">No hay códigos en el historial</div>
+      </div>
+    </div>
   </div>
   <script src="utils.js"></script>
   <script src="popup.js"></script>

@@ -1,28 +1,36 @@
 {
   "manifest_version": 3,
-  "name": "Court Form Filler",
+  "name": "Autocompletado Rama Judicial",
   "version": "1.0",
-  "description": "Automates filling the court form with a 23-digit code",
+  "description": "Extensión para autocompletar formularios de la Rama Judicial",
+
   "permissions": [
     "activeTab",
-    "scripting"
+    "storage"
   ],
-  "host_permissions": [
-    "https://procesojudicial.ramajudicial.gov.co/*"
-  ],
+
   "action": {
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_title": "Autocompletado Rama Judicial"
   },
+
   "content_scripts": [
     {
-      "matches": ["https://procesojudicial.ramajudicial.gov.co/Justicia21/Administracion/Ciudadanos/frmConsulta.aspx?opcion=consulta"],
+      "matches": ["*://procesojudicial.ramajudicial.gov.co/*"],
       "js": ["content.js"]
     }
   ],
+
   "web_accessible_resources": [
     {
-      "resources": ["assets/wabog_name_logo_light.webp"],
+      "resources": ["assets/*"],
       "matches": ["<all_urls>"]
     }
-  ]
+  ],
+
+  "icons": {
+    // "16": "assets/icon16.png",
+    // "48": "assets/icon48.png",
+    // "128": "assets/icon128.png"
+  }
 }
