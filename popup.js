@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     historyList.innerHTML = history.map(code => `
       <div class="history-item">
-        <span class="history-code" onclick="selectFromHistory('${code}')">${code}</span>
+        <span class="history-code" onclick="window.selectFromHistory('${code}')">${code}</span>
         <button class="delete-btn" onclick="window.deleteFromHistory('${code}')" title="Eliminar">🗑</button>
       </div>
     `).join('');
