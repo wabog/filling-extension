@@ -87,6 +87,38 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function renderHistory(history) {
+    historyList.innerHTML = '';
+
+    history.forEach(code => {
+      const item = document.createElement('div');
+      item.className = 'history-item';
+
+      const codeSpan = document.createElement('span');
+      codeSpan.className = 'history-code';
+      codeSpan.textContent = code;
+      codeSpan.addEventListener('click', () => {
+        selectFromHistory(code);
+      });
+
+      const deleteButton = document.createElement('button');
+      deleteButton.className = 'delete-btn';
+      deleteButton.title = 'Eliminar';
+      deleteButton.textContent = '🗑';
+      deleteButton.addEventListener('click', () => {
+        deleteFromHistory(code);
+      });
+
+      item.appendChild(codeSpan);
+      item.appendChild(deleteButton);
+      historyList.appendChild(item);
+    });
+
+    if (history.length === 0) {
+      historyList.innerHTML = '<div class="history-empty">No hay códigos en el historial</div>';
+      clearAllBtn.style.display = 'none';
+    } else {
+      clearAllBtn.style.display = 'block';
+    }
     if (history.length === 0) {
       historyList.innerHTML = '<div class="history-empty">No hay códigos en el historial</div>';
       clearAllBtn.style.display = 'none';
@@ -97,8 +129,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     historyList.innerHTML = history.map(code => `
       <div class="history-item">
-        <span class="history-code" onclick="window.selectFromHistory('${code}')">${code}</span>
-        <button class="delete-btn" onclick="deleteFromHistory('${code}')" title="Eliminar">🗑</button>
+        <span class="history-code">${code}</span>
+        <button class="delete-btn" title="Eliminar">🗑</button>
       </div>
     `).join('');
   }
