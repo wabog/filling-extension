@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Court Form Filler</title>
+  <style>
+    body {
+      width: 300px;
+      padding: 10px;
+      font-family: Arial, sans-serif;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    #error {
+      color: red;
+      margin-top: 10px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h2>Court Form Filler</h2>
+  <input type="text" id="courtCode" placeholder="Enter 23-digit code" maxlength="23">
+  <button id="submit">Fill Form</button>
+  <div id="error"></div>
+  <script src="utils.js"></script> <!-- Aquí cargas el nuevo utils.js -->
+  <script src="popup.js"></script>
+</body>
+</html>

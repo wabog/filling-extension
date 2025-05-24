@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Court Form Filler",
+  "version": "1.0",
+  "description": "Automates filling the court form with a 23-digit code",
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://procesojudicial.ramajudicial.gov.co/*"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://procesojudicial.ramajudicial.gov.co/Justicia21/Administracion/Ciudadanos/frmConsulta.aspx?opcion=consulta"],
+      "js": ["content.js"]
+    }
+  ]
+}
